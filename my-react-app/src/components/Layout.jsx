@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchResults from './SearchResults';
 import '../styles/Style.css';
 
-const Layout = ({ handleSearch, searchTerm, searchResults }) => {
+const Layout = ({ searchResults }) => {
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    // Oppdater filteredResults når searchResults eller searchTerm endres
+    if (!searchTerm) {
+      setFilteredResults(searchResults);
+    } else {
+      const filtered = searchResults.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      setFilteredResults(filtered);
+    }
+  }, [searchResults, searchTerm]);
+
+  const handleSearch = () => {
+  };
+
   return (
     <div className="layout">
       <header>
@@ -12,17 +28,13 @@ const Layout = ({ handleSearch, searchTerm, searchResults }) => {
             type="text"
             placeholder="Search books..."
             value={searchTerm}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button onClick={() => handleSearch(searchTerm)}>Search</button>
+          <button onClick={handleSearch}>Search</button>
         </div>
       </header>
       <main>
-        {searchResults && searchResults.length > 0 ? (
-          <SearchResults searchResults={searchResults} />
-        ) : (
-          <div className="no-results">No results found...</div>
-        )}
+        <SearchResults searchResults={filteredResults} />
       </main>
     </div>
   );

@@ -4,9 +4,13 @@ import BookCard from './BookCard';
 const SearchResults = ({ searchResults }) => {
   return (
     <div className="search-results">
-      {searchResults.map((book, index) => (
-        <BookCard key={index} book={book} />
-      ))}
+      {searchResults && searchResults.length > 0 ? (
+        searchResults.map((book, index) => (
+          <BookCard key={index} book={book} />
+        ))
+      ) : (
+        <div>No results found...</div>
+      )}
     </div>
   );
 };
