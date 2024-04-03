@@ -1,7 +1,8 @@
 import React from 'react';
 import SearchResults from './SearchResults';
+import '../styles/Style.css';
 
-const Layout = ({ children, handleSearch, searchTerm, searchResults }) => {
+const Layout = ({ handleSearch, searchTerm, searchResults }) => {
   return (
     <div className="layout">
       <header>
@@ -20,9 +21,8 @@ const Layout = ({ children, handleSearch, searchTerm, searchResults }) => {
         {searchResults && searchResults.length > 0 ? (
           <SearchResults searchResults={searchResults} />
         ) : (
-          <div className="no-results">No results found.</div>
+          <div className="no-results">No results found...</div>
         )}
-        {children}
       </main>
     </div>
   );
