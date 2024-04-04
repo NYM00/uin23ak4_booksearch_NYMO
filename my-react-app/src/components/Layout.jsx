@@ -7,7 +7,7 @@ const Layout = ({ searchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    // Oppdater filteredResults når searchResults eller searchTerm endres
+    // Oppdaterer filteredResults når searchResults eller searchTerm endres
     if (!searchTerm) {
       setFilteredResults(searchResults);
     } else {
@@ -26,7 +26,7 @@ const Layout = ({ searchResults }) => {
         <div className="search-container">
           <input
             type="text"
-            placeholder="Search books..."
+            placeholder="Search in our library..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

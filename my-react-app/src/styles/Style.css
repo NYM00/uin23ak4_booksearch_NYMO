@@ -62,6 +62,11 @@
   .book-card a:hover {
     text-decoration: underline;
   }
+
+  .book-card img {
+    width: 150;
+    height: 150px;
+  }
   
   .no-results {
     text-align: center;
